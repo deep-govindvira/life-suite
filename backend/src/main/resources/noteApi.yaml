@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: API
+  version: 1.0.11
+servers:
+  - url: localhost:8080
+tags:
+  - name: note
+paths:
+  /note/add:
+    post:
+      tags:
+        - note
+      operationId: add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+  /note/update:
+    post:
+      tags:
+        - note
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+  /note/remove:
+    post:
+      tags:
+        - note
+      operationId: remove
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+  /note/get:
+    post:
+      tags:
+        - note
+      operationId: get
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteList'
+  /note/get/id:
+    post:
+      tags:
+        - note
+      operationId: getById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+components:
+  schemas:
+    Note:
+      required:
+        - id
+        - title
+        - description
+        - color
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+    NoteList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Note'

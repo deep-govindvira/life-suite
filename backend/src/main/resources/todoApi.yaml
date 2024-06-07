@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: API
+  version: 1.0.11
+servers:
+  - url: localhost:8080
+tags:
+  - name: todo
+paths:
+  /todo/add:
+    post:
+      tags:
+        - todo
+      operationId: add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+  /todo/update:
+    post:
+      tags:
+        - todo
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+  /todo/remove:
+    post:
+      tags:
+        - todo
+      operationId: remove
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todo'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+  /todo/get:
+    post:
+      tags:
+        - todo
+      operationId: get
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodoList'
+components:
+  schemas:
+    Todo:
+      required:
+        - id
+        - name
+        - status
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    TodoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Todo'

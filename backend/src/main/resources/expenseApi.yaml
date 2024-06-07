@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: API
+  version: 1.0.11
+servers:
+  - url: localhost:8080
+tags:
+  - name: expense
+paths:
+  /expense/add:
+    post:
+      tags:
+        - expense
+      operationId: add
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Expense'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+  /expense/update:
+    post:
+      tags:
+        - expense
+      operationId: update
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Expense'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+  /expense/remove:
+    post:
+      tags:
+        - expense
+      operationId: remove
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Expense'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+  /expense/get:
+    post:
+      tags:
+        - expense
+      operationId: get
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseList'
+  /expense/get/id:
+    post:
+      tags:
+        - expense
+      operationId: getById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Expense'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+components:
+  schemas:
+    Expense:
+      required:
+        - id
+        - title
+        - amount
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        amount:
+          type: integer
+    ExpenseList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Expense'
