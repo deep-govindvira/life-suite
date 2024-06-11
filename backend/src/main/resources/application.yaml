@@ -2,7 +2,7 @@ spring:
   application:
    name: backend
 dynamodb:
-  endpoint: http://localhost:4566
+  endpoint: http://localstack:4566
   region: ap-south-1
   id: test
   password: test
