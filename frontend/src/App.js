@@ -12,14 +12,16 @@ import Login from './login/Login'; // Import Login component
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);  // New state to track if we are checking the login status
 
   useEffect(() => {
-    // Check if user is logged in by checking localStorage
+    // Check if the user is logged in by checking localStorage
     const user = localStorage.getItem('username');
     if (user) {
       setIsLoggedIn(true);
     }
-  }, []);
+    setIsLoading(false);  // Once the check is complete, stop loading
+  }, []); // The empty dependency array ensures this runs only once when the component mounts
 
   const handleLoginLogout = () => {
     if (isLoggedIn) {
@@ -29,6 +31,17 @@ function App() {
     }
   };
 
+  // Prevent rendering until the login check is complete
+  if (isLoading) {
+    return (
+      <div class="text-center text-primary">
+      Loading...
+    </div>
+    
+
+    )
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -36,10 +49,11 @@ function App() {
           <Navbar isLoggedIn={isLoggedIn} onLoginLogout={handleLoginLogout} />
         </div>
         <Routes>
-          <Route path='/' element={<Home />} />
+          {/* Redirect to login if not logged in */}
+          <Route path='/' element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
           <Route path='/login' element={<Login onLogin={setIsLoggedIn} />} />
           
-          {/* Only allow access to routes if logged in */}
+          {/* Protected Routes - Redirect to login if not logged in */}
           <Route path='/Todo' element={isLoggedIn ? <Todo /> : <Navigate to="/login" />} />
           <Route path='/Note' element={isLoggedIn ? <Note /> : <Navigate to="/login" />} />
           <Route path='/Note/Add' element={isLoggedIn ? <NoteAdd /> : <Navigate to="/login" />} />
