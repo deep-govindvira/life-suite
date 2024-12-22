@@ -73,7 +73,9 @@ const Note = () => {
                         >
                             <div className="card-body">
                                 <h5 className="card-title">{item.title}</h5>
-                                <p style={{textAlign:'left'}} className="card-text">{item.description}</p>
+                                <p style={{ textAlign: 'left', whiteSpace: 'pre-line' }} className="card-text">
+                                    {item.description}
+                                </p>
                             </div>
                         </div>
                     ))}
