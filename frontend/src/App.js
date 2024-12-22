@@ -50,7 +50,7 @@ function App() {
         </div>
         <Routes>
           {/* Redirect to login if not logged in */}
-          <Route path='/' element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
+          <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login onLogin={setIsLoggedIn} />} />
           
           {/* Protected Routes - Redirect to login if not logged in */}
